@@ -1,15 +1,26 @@
 import { Button } from "bootstrap"
-import { useState } from "react";
+import { useContext, useState } from "react";
+import "./Header.css"
 import LoadingButton from '@mui/lab/LoadingButton';
-export default function Header({ login, password, userName, signUp, loginShow, loginDetails }) {
+import { Link } from "react-router-dom";
+import AdminContext from "../../Context/AdminContext";
+export default function Header({ password, userName, signUp, loginShow, loginDetails }) {
     const [loading, setLoading] = useState(false);
-
+    const { login, setLogin } = useContext(AdminContext)
     const handleClick = () => {
         setLoading(!loading);
         setTimeout(() => {
             setLoading(false)
         }, 1500);
     }
+    return (
+        <div className="header">
+            {login && <div className="btn-log" type="button" onClick={() => { setLogin(!login); localStorage.clear(); }}><Link className="link-log" to="/login">log out</Link></div>}
+            <h5> welcome to my playlist site </h5>
+        </div>
+    )
+
+
     // return !loginShow ? <div className="header">
     //     <div className="welcome"> <h6> welcome <h5>{loginDetails.username} !</h5> </h6></div>
     //     <h1> 🎼 playlist ⏯</h1></div> :

@@ -218,14 +218,14 @@ function App() {
       <div className="app">
         <AdminContext.Provider value={{ handleLogin, login, setLogin }}>
           <Router>
-            {/* <Header /> */}
-            <div >
-              <Routes>
-                <Route path="/" element={login ? <Navigate to="/Home" /> : <Navigate to="/login" />} />
-                <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to="/Home" /> : <Login />} />
-                <Route path="/Home" element={<Home />} />
-              </Routes>
-            </div>
+            <Header />
+
+            <Routes>
+              <Route path="/" element={login ? <Navigate to="/Home" /> : <Navigate to="/login" />} />
+              <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to="/Home" /> : <Login />} />
+              <Route path="/Home" element={<Home />} />
+            </Routes>
+
           </Router>
         </AdminContext.Provider>
       </div>

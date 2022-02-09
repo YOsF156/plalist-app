@@ -19,7 +19,7 @@ width: 100vw;
 }
 
 .App-header {
-  background-color: #1060ff;
+  background-color: #444f66;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,10 +44,10 @@ width: 100vw;
 
 .song-player{
   position: absolute;
-  top: 60%;
+  top: 40%;
   right: 50%;
   height: 25%;
-  width: 50%;
+  width: 25%;
 }
  
 
