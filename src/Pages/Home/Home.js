@@ -1,18 +1,27 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Plyr from "plyr-react";
 import { useContext } from "react";
 import AdminContext from "../../Context/AdminContext";
 import "./Home.css"
-
+import SearchBar from "../../componenet/SearchBar/SearchBar"
+import CardContainer from "../../componenet/CardContainer/CardCcontainer";
+import HomeContext from "../../Context/HomeContext";
+import MusicCards from "../../componenet/MusicCards/MusicCards";
 
 export default function Home() {
 
-
+    const [showRes, setShowRes] = useState(false)
+    const [songsRes, setSongsRes] = useState([null])
     const [http, setHttp] = useState("z-nMADrwC2c")
     const { login, setLogin } = useContext(AdminContext);
     const [showPlayer, setShowPlayer] = useState(false)
-    setLogin(true)
+    const { getAllSong, allSongs } = useContext(AdminContext)
+    useEffect(() => {
+        setLogin(true)
+        getAllSong()
+    }, [])
+
     const play = (id) => {
         setHttp({
             type: "video",
@@ -28,24 +37,19 @@ export default function Home() {
 
 
     return (
-
         <div className="home" >
-            <div className='search-bar-container'>
-                <div className="search-input-box">
-                    <img className="searchIcon" src="Search@2x.svg" alt="search" />
-                    <input
-
-                        // onChange={(event) => { filterByShearch(event.target.value) }}
-                        type={"text"}
-                        className="searchBox"
-                        placeholder="מה תרצה לשמוע היום..."
-                    />
+            <HomeContext.Provider value={{ play }}>
+                <div className="nav-side">sdvsdvsd</div>
+                <div className="action-zone">
+                    <SearchBar setSongsRes={setSongsRes} setShowRes={setShowRes} />
+                    {showRes && <CardContainer songsRes={songsRes} setShowRes={setShowRes} />}
+                    <MusicCards />
+                    <button className="popup-open" onClick={() => { play(http); setShowPlayer(!showPlayer) }}>play</button>
+                    {showPlayer && <div className="player">
+                        <Plyr source={http} />
+                    </div>}
                 </div>
-            </div>
-            <button className="popup-open" onClick={() => { play(http); setShowPlayer(!showPlayer) }}>play</button>
-            {showPlayer && <div className="player">
-                <Plyr source={http} />
-            </div>}
+            </HomeContext.Provider>
         </div>
     )
 }

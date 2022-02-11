@@ -46,22 +46,21 @@ import api from './Controller/axiosReq';
 //   }
 
 
-//   const getAllSong = () => {
-//     if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
-//     setLoginShow(false);
-//     fetch(`http://localhost:3001/songs`, {
-//       method: 'GET',
-//       headers: {
-//         "content-type": "application/json",
-//         "authorization": `bearer ${localStorage.accessToken}`
-//       },
+// const getAllSong = () => {
+//   if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
+//   fetch(`http://localhost:3001/songs`, {
+//     method: 'GET',
+//     headers: {
+//       "content-type": "application/json",
+//       "authorization": `bearer ${localStorage.accessToken}`
+//     },
+//   })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data)
+//       setSongList(data)
 //     })
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data)
-//         setSongList(data)
-//       })
-//   }
+// }
 
 //   const searchSong = (text) => {
 //     fetch(`http://localhost:3001/api/search/${text}`)
@@ -186,9 +185,12 @@ import api from './Controller/axiosReq';
 
 function App() {
 
-
+  const [allSongs, setAllSong] = useState([])
   const [login, setLogin] = useState(false);
-
+  useEffect(() => {
+    localStorage.PLaccessToken && setLogin(true)
+  }, [])
+  console.log(login)
   const clear = () => {
     localStorage.clear("PLaccessToken");
     setLogin(Boolean(localStorage.PLaccessToken));
@@ -208,6 +210,12 @@ function App() {
     }
   }
 
+  const getAllSong = async () => {
+    if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
+    const songs = await api.get(`/songs`)
+    console.log(songs.data)
+    setAllSong(songs.data)
+  }
 
 
 
@@ -216,7 +224,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <AdminContext.Provider value={{ handleLogin, login, setLogin }}>
+        <AdminContext.Provider value={{ getAllSong, allSongs, handleLogin, login, setLogin }}>
           <Router>
             <Header />
 

@@ -1,0 +1,12 @@
+.music-cards{
+    background-color: rgb(30, 144, 250);
+    height: 90%;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 2%;
+}
