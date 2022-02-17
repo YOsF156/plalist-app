@@ -10,8 +10,12 @@
   .searchIcon {
  height: 70%;
     margin-top: 0.5%;
+    cursor: pointer;
  
   }
+  .searchIcon:hover {
+ height: 100%;
+     }
   .search-bar-container{
       display: flex;
       flex-direction: row-reverse;

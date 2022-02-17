@@ -1,0 +1,13 @@
+.playlist-link{
+background-color:white;
+}
+
+.nav-side{
+    overflow:hidden;
+    overflow-y: scroll;
+}
+
+.nav-side::-webkit-scrollbar{
+    display: none;
+    
+  }

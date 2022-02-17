@@ -20,18 +20,18 @@ export default function MusicCard({ song }) {
         setBb(!bb)
     }
     return (
-        <Card id={song.id} sx={{ maxWidth: 400, marginBottom: 2, display: 'flex' }}>
+        <Card id={song.id} sx={{ maxWidth: 400, maxHeight: 150, marginBottom: 2, display: 'flex' }}>
 
 
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
                 <CardContent sx={{ flex: '1 0 auto' }}>
 
-                    <Typography component="div" variant="h5">
-                        Live From Space
+                    <Typography component="div" sx={{ maxHeight: 30, overflow: 'hidden', }} title={song.title} variant="h6">
+                        {song.title}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div">
-                        Mac Miller
+                        {song.duration}
                     </Typography>
                 </CardContent>
 
@@ -55,7 +55,7 @@ export default function MusicCard({ song }) {
                 component="img"
                 sx={{ width: 151 }}
                 image={song.thumbnails_url}
-                alt="Live from space album cover"
+                alt={song.title}
             />
         </Card>
     );

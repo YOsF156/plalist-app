@@ -150,21 +150,6 @@ import api from './Controller/axiosReq';
 
 
 
-//   // const play = (http) => {
-//   //   setHttp(http)
-//   // }
-//   const play = (id) => {
-//     setHttp({
-//       type: "video",
-//       sources: [
-//         {
-//           src: id,
-//           provider: "youtube",
-//         },
-//       ],
-//     });
-//   };
-
 //   return (
 //     <div className="App" >
 //       <Header login={login} userName={userName} password={password} signUp={signUp} loginShow={loginShow} loginDetails={loginDetails} />
@@ -187,14 +172,19 @@ function App() {
 
   const [allSongs, setAllSong] = useState([])
   const [login, setLogin] = useState(false);
+  const [playlistName, setPlaylistName] = useState("צסצסצ")
+
   useEffect(() => {
     localStorage.PLaccessToken && setLogin(true)
   }, [])
+
   console.log(login)
+  console.log(playlistName);
   const clear = () => {
     localStorage.clear("PLaccessToken");
     setLogin(Boolean(localStorage.PLaccessToken));
   }
+
   const handleLogin = async (event) => {
     if (event === 0) { return clear() }
     event.preventDefault();
@@ -224,13 +214,14 @@ function App() {
   return (
     <>
       <div className="app">
-        <AdminContext.Provider value={{ getAllSong, allSongs, handleLogin, login, setLogin }}>
+        <AdminContext.Provider value={{ getAllSong, setPlaylistName, allSongs, handleLogin, login, setLogin }}>
           <Router>
             <Header />
 
             <Routes>
-              <Route path="/" element={login ? <Navigate to="/Home" /> : <Navigate to="/login" />} />
-              <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to="/Home" /> : <Login />} />
+              <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
+              <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
+              <Route path='/Home/:playlist' element={<Home />} />
               <Route path="/Home" element={<Home />} />
             </Routes>
 

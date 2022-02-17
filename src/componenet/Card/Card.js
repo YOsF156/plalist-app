@@ -9,12 +9,15 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MultipleSelectCheckmarks from '../MultiSelect/MultiSelect';
+import { useContext } from 'react';
+import HomeContext from '../../Context/HomeContext';
+
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -28,6 +31,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Cards({ song }) {
+    const { setShowSelect, getSongRelationships } = useContext(HomeContext)
     const [expanded, setExpanded] = React.useState(false);
     const [openMenu, setOpenMenu] = React.useState(false);
     const handleExpandClick = () => {
@@ -38,15 +42,17 @@ export default function Cards({ song }) {
     };
 
     return (
-        <Card sx={{ maxHeight: 480, margin: 2, minWidth: 250, maxWidth: 250 }}>
+        <Card sx={{
+            maxHeight: 480, zIndex: 1500, overflow: 'visible', overflowY: "scroll", margin: 2, minWidth: 250, maxWidth: 250
+        }}>
             <CardHeader
                 avatar={
                     song.author && <Avatar src={song.author.avatars[0].url} sx={{ width: 50, height: 50 }} />
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon onClick={handleOpenMenu} />
-                        {openMenu && <MultipleSelectCheckmarks id={song.id} />}
+                        <MoreVertIcon onClick={() => { handleOpenMenu(); getSongRelationships(song.id); }} />
+
                     </IconButton>
                 }
                 title={`views: ${song.views}`}
@@ -86,6 +92,6 @@ export default function Cards({ song }) {
 
                 </CardContent>
             </Collapse>
-        </Card>
+        </Card >
     );
 }

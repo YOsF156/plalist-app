@@ -1,5 +1,5 @@
 .music-cards{
-    background-color: rgb(30, 144, 250);
+    background-color: rgb(244, 247, 250);
     height: 90%;
     width: 100%;
     overflow: hidden;
@@ -10,3 +10,8 @@
     flex-direction: row-reverse;
     padding: 2%;
 }
+
+.music-cards> div:hover{
+    box-shadow: 20px 20px 30px rgb(185, 163, 35);
+}
+

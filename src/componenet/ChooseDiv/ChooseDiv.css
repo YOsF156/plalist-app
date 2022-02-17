@@ -1,0 +1,34 @@
+.choose-div{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color:rgba(0, 0, 0, 0.8);
+    z-index: 4;
+}
+
+
+
+.main-select-div{
+    position: absolute;
+    left: 500px;
+    top: 400px;
+    z-index: 5;
+   height: 60%;
+    background-color: white;
+}
+
+.select-div{
+    height: 40%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+.close-popup-btn{
+    cursor: pointer;
+
+}
+.close-popup-btn:hover{
+    size:200%;
+    background-color:blanchedalmond;
+}
