@@ -37,7 +37,7 @@ export default function Home() {
     useEffect(() => {
         // go()
         getPlaylistsNames();
-        getPagePlaylist(query)
+        getPagePlaylist(query, false)
 
     }, [])
 
@@ -77,33 +77,45 @@ export default function Home() {
 
 
     //משיכת פלייליסט
-    const getPagePlaylist = async (name) => {
+    const getPagePlaylist = async (name, boolean) => {
         // if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
 
         const get = await getPlaylists()
         const choosenPlaylist = await get.find(list => list.playlistName === name)
         const set = await choosenPlaylist.songsID
-        setSongs(set)
-        setFilterSongs(set)
+        if (!boolean) {
+
+            setSongs(set)
+            setFilterSongs(set);
+        }
+
     }
 
-    const AddSongToTheLIst = async (id, listName) => {
+    const AddSongToTheLIst = async (id, listName, add, from) => {
         // if (!localStorage.accessToken) return localStorage.accessToken = "";
-        const song = await songsRes.find(song => song.id === id)
-        const newSong = {
-            title: song.title,
-            id: song.id,
-            url: song.url,
-            thumbnails_url: song.bestThumbnail.url,
-            views: song.views,
-            duration: song.duration,
-            uploadedAt: song.uploadedAt
+        if (add && from === "fromSearch") {
+
+            const song = await songsRes.find(song => song.id === id)
+            const newSong = {
+                title: song.title,
+                id: song.id,
+                url: song.url,
+                thumbnails_url: song.bestThumbnail.url,
+                views: song.views,
+                duration: song.duration,
+                uploadedAt: song.uploadedAt
+            };
+            const addSong = await api.post(`/songs/${id}`, newSong);
         };
-        const addSong = await api.post(`/songs/${id}`, newSong);
-        const playlist = await api.post(`/playlists/addSongTo/${listName}/${id}`)
+        if (add) {
+
+            const playlists = await api.post(`/playlists/addSongTo/${listName}/${id}`)
+        } else {
+            const playlists = await api.delete(`/playlists/deleteSongFrom/${listName}/${id}`)
+        }
         //לשלוח לפונקציה שמחזירה את כל רשימות השירים
 
-        getPagePlaylist(listName)
+        getPagePlaylist(listName, playlist === listName ? false : true)
         getSongRelationships(id)
         // setSongs(playlist.data.songsID);
         // setFilterSongs(playlist.data.songsID)
