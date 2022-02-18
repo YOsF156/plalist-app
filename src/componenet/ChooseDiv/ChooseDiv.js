@@ -8,23 +8,24 @@ import "./ChooseDiv.css";
 export default function ChooseDiv() {
     const { playlistsNames, setShowSelect, playlistOfSong, AddSongToTheLIst, songID, addPlaylist } = useContext(HomeContext);
     const newPlaylist = useRef(null);
-    const [checked, setChecked] = useState(playlistOfSong);
+    const [checked, setChecked] = useState(playlistOfSong.filter(c => c !== "main playlist"));
 
-    const handleChange = async (name, type) => {
-        alert(name)
-        if (type === "input" && !checked.indexOf(newPlaylist.current.value) > -1) {
+    const handleChange = async (name, types) => {
+
+        if (types === "input" && checked.indexOf(name) > -1) {
             alert("the listName is already exists but we got this")
         };
-        if (type === 'uncheck' || type === "input") {
+        if (types === 'uncheck' || types === "input") {
             const add = await AddSongToTheLIst(songID, name, true, "fromSearch");
-            const change = await setChecked(...checked, name)
-        } else if (type === 'check') {
+            const change = await setChecked(...checked, name);
+        } else if (types === 'check') {
             const del = await AddSongToTheLIst(songID, name, false);
             const change = await setChecked(checked.filter(c => c !== name))
         }
-
-        newPlaylist.current.value = ""
-        /// הן בפרונט והן בשרת ההפך משורות 14-15 כל הדרך \להוסיף מחיקת שיר
+        if (types === "input") {
+            newPlaylist.current.value = null;
+            window.location.replace(`http://localhost:3000/Home/${name}`);
+        }
 
     }
 
@@ -36,7 +37,7 @@ export default function ChooseDiv() {
                 <div className="select-div">
                     {playlistsNames.map((name) => (
                         <div key={name} value={name}>
-                            <input id={name} type="checkbox" value={name} onChange={(e) => handleChange(e.target.value, e.target.checked ? "uncheck" : "check")} checked={checked.indexOf(name) > -1} />
+                            <input id={name} type="checkbox" value={name} onChange={(e) => handleChange(e.target.value, e.target.checked ? "uncheck" : "check")} checked={checked.includes(name)} />
 
                             <lable for={name}>{name}</lable>
                         </div>))}

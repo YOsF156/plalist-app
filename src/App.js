@@ -172,7 +172,7 @@ function App() {
 
   const [allSongs, setAllSong] = useState([])
   const [login, setLogin] = useState(false);
-  const [playlistName, setPlaylistName] = useState("צסצסצ")
+  const [playlistName, setPlaylistName] = useState("main playlist")
 
   useEffect(() => {
     localStorage.PLaccessToken && setLogin(true)
@@ -222,7 +222,7 @@ function App() {
               <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
               <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
               <Route path='/Home/:playlist' element={<Home />} />
-              <Route path="/Home" element={<Home />} />
+              <Route path="/Home" element={<Navigate to={`/Home/${playlistName}`} />} />
             </Routes>
 
           </Router>

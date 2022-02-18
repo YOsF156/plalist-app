@@ -38,7 +38,7 @@ export default function Cards({ song }) {
         setExpanded(!expanded);
     };
     const handleOpenMenu = () => {
-        setOpenMenu(!openMenu);
+        setShowSelect(true)
     };
 
     return (

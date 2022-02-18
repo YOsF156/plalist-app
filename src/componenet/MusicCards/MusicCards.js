@@ -5,8 +5,8 @@ import MusicCard from "../MusicCard/MusicCard";
 import "./MusicCards.css";
 
 export default function MusicCards() {
-    const { allSongs, filterSongs } = useContext(HomeContext)
-    console.log(filterSongs);
+    const { filterSongs } = useContext(HomeContext)
+
     return (
         <div className="music-cards">
             {filterSongs[0] && filterSongs.map(song => <MusicCard key={song.id} song={song} />)}

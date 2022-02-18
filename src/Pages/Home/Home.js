@@ -59,7 +59,7 @@ export default function Home() {
             return playlist.res
         }).filter(res => res);
         setPlaylistOfSong(conectiones);
-        setShowSelect(true)
+        // setShowSelect(true)
     }
 
     const play = (id) => {
@@ -106,20 +106,15 @@ export default function Home() {
                 uploadedAt: song.uploadedAt
             };
             const addSong = await api.post(`/songs/${id}`, newSong);
+            const addSongToMainPlaylist = await api.post(`/playlists/${id}`);
         };
         if (add) {
-
-            const playlists = await api.post(`/playlists/addSongTo/${listName}/${id}`)
+            const playlists = await api.put(`/playlists/addSongTo/${listName}/${id}`)
         } else {
             const playlists = await api.delete(`/playlists/deleteSongFrom/${listName}/${id}`)
         }
-        //לשלוח לפונקציה שמחזירה את כל רשימות השירים
-
         getPagePlaylist(listName, playlist === listName ? false : true)
         getSongRelationships(id)
-        // setSongs(playlist.data.songsID);
-        // setFilterSongs(playlist.data.songsID)
-
     }
 
     const getPlaylists = async () => {
@@ -131,13 +126,17 @@ export default function Home() {
     const getPlaylistsNames = async () => {
         const names = await api.get("/playlists/myPlaylist/names");
         setPlaylistsNames(names.data)
-
-        //לסיים הצבה ביוזסטייט אחרי עבודה
     }
-    console.log(filterSongs)
+    const deletePlaylist = async (name) => {
+        if (window.confirm("Are you sure you want to delete?")) {
+            const deleteEntirePlaylist = await api.delete(`/playlists/${name}`);
+            setPlaylistName("main playlist");
+            window.location.replace("/Home");
+        }
+    }
     return (
         <div className="home" >
-            <HomeContext.Provider value={{ playlistsNames, songID, playlistOfSong, getSongRelationships, setShowSelect, play, getPagePlaylist, filterSongs, setSongsRes, setShowRes, setFilterSongs, songs, AddSongToTheLIst }}>
+            <HomeContext.Provider value={{ playlistsNames, setPlaylistsNames, deletePlaylist, songID, playlistOfSong, getSongRelationships, setShowSelect, play, getPagePlaylist, filterSongs, setSongsRes, setShowRes, setFilterSongs, songs, AddSongToTheLIst }}>
                 <NavSide />
                 {showSelect && <ChooseDiv />}
                 <div className="action-zone">
