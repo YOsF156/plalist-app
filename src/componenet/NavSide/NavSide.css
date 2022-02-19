@@ -12,38 +12,4 @@ background-color:white;
     
   }
 
-  .link-div{
-    text-decoration:none;
-    background-color: rgb(25, 118, 210);
-    text-decoration: none;
-
-  }
-.playlist-div{
-    width: 100%;
-    height: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    text-decoration: none;
-    text-transform: none;
-    text-decoration-color: none;
-    text-decoration-style: none;
-    color:aliceblue;
-    background-color: rgb(25, 118, 210);
-    padding-right: 5px;
-}
-
-.playlist-div:after{
-    background-color:cadetblue;
-
-}
-
-.delete-playlist{
-    cursor: pointer;
-    size: 200%;
-    border-radius:10px;
-}
-.delete-playlist:hover{
-   background-color:rgb(150, 45, 45);
-    
-}
+ 

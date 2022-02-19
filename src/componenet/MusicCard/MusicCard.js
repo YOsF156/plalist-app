@@ -6,28 +6,38 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import HomeContext from '../../Context/HomeContext';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import { useParams } from 'react-router-dom';
+import api from '../../Controller/axiosReq';
 
 
 export default function MusicCard({ song }) {
     const theme = useTheme();
-    const [bb, setBb] = React.useState(false)
-    const { play } = React.useContext(HomeContext)
-    const handle = () => {
-        setBb(!bb)
+    const { playlist } = useParams();
+    const { play, AddSongToTheLIst, setComingFrom, setSongID, setShowSelect } = React.useContext(HomeContext);
+
+    const setToList = async () => {
+        setSongID(song.id);
+        setComingFrom("fromMusic")
+        setShowSelect(true)
     }
+
+    const earase = (id) => {
+        AddSongToTheLIst(id, playlist, false, "from-player")
+    }
+
     return (
-        <Card id={song.id} sx={{ maxWidth: 400, maxHeight: 150, marginBottom: 2, display: 'flex' }}>
+        <Card id={song.id} sx={{ maxWidth: 400, maxHeight: 150, margin: 2, display: 'flex' }}>
 
 
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
                 <CardContent sx={{ flex: '1 0 auto' }}>
 
-                    <Typography component="div" sx={{ maxHeight: 30, overflow: 'hidden', }} title={song.title} variant="h6">
+                    <Typography component="div" sx={{ maxHeight: 30, overflow: 'hidden', minWidth: 250 }} title={song.title} variant="h6">
                         {song.title}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary" component="div">
@@ -36,16 +46,16 @@ export default function MusicCard({ song }) {
                 </CardContent>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                    <IconButton aria-label="previous">
-                        {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
-                    </IconButton>
+                    {playlist !== "main playlist" && <IconButton onClick={() => earase(song.id)} aria-label="earase" >
+                        {theme.direction === 'rtl' ? <MoreVertIcon /> : <DeleteSweepIcon />}
+                    </IconButton>}
                     <IconButton aria-label="play/pause">
                         <PlayArrowIcon onClick={() => play(song.id)} sx={{ height: 38, width: 38 }} />
                     </IconButton>
 
-                    <IconButton aria-label="next">
+                    <IconButton onClick={setToList} aria-label="more">
 
-                        {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                        {theme.direction === 'rtl' ? <DeleteSweepIcon /> : <MoreVertIcon />}
                     </IconButton>
                 </Box>
             </Box>
@@ -60,3 +70,6 @@ export default function MusicCard({ song }) {
         </Card>
     );
 }
+
+// setShowSelect(true)
+//         getSongRelationships(song.id);

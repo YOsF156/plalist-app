@@ -9,7 +9,6 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -31,13 +30,15 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function Cards({ song }) {
-    const { setShowSelect, getSongRelationships } = useContext(HomeContext)
+    const { setShowSelect, getSongRelationships, setSongID, setComingFrom } = useContext(HomeContext)
     const [expanded, setExpanded] = React.useState(false);
-    const [openMenu, setOpenMenu] = React.useState(false);
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
     const handleOpenMenu = () => {
+        setSongID(song.id)
+        setComingFrom("fromSearch")
         setShowSelect(true)
     };
 
@@ -51,7 +52,7 @@ export default function Cards({ song }) {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon onClick={() => { handleOpenMenu(); getSongRelationships(song.id); }} />
+                        <MoreVertIcon onClick={handleOpenMenu} />
 
                     </IconButton>
                 }

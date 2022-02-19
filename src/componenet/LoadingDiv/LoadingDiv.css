@@ -1,0 +1,58 @@
+.loading{
+    height: 90vmax;
+    width: 100vmax;
+    position: fixed;
+    z-index: 7;
+    background-color:rgba(75, 160, 162, 0.8);
+    text-align: center;
+    justify-content:space-around;
+    
+}
+
+#loading div {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+  }
+.loading1{
+    background: rgb(187, 72, 72); 
+    animation: loadmoveright 3s infinite;
+    top:200px;
+}
+.loading2{
+    background: rgb(255, 0, 170);
+    animation: loadmovedown 3s infinite;
+    top:200px; 
+    left: 50%;
+
+}
+
+.loading3{
+    background: rgb(75, 110, 191); 
+    animation: loadmoveleft 3s infinite;
+    top: 400px;
+    left : 50%;
+}
+.loading4{
+    background: rgb(71, 204, 109); 
+    animation: loadmoveup 3s infinite;
+    top: 400px;
+    left: 40%;
+}
+  @keyframes loadmoveright {
+    from {left:40%;}
+    to {left: 50%;}
+  }
+  @keyframes loadmovedown {
+    from {top:200px;}
+    to {top: 400px;}
+  }
+
+  @keyframes loadmoveleft {
+    from {left: 50%;}
+    to {left: 40%;}
+  }
+  @keyframes loadmoveup {
+    from {top:400px;}
+    to {top: 200px;}
+  }
