@@ -1,3 +1,6 @@
+import Addchart from "@mui/icons-material/Addchart";
+import AddModerator from "@mui/icons-material/AddModerator";
+import Close from "@mui/icons-material/Close";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext, useRef } from "react";
@@ -9,7 +12,7 @@ import "./ChooseDiv.css";
 export default function ChooseDiv() {
     const { playlistsNames, setShowSelect, comingFrom, playlistOfSong, getSongRelationships, AddSongToTheLIst, songID, setShowRes, setloading } = useContext(HomeContext);
     const newPlaylist = useRef(null);
-    const [checked, setChecked] = useState([...playlistOfSong.filter(c => c !== "main playlist")]);
+    const [checked, setChecked] = useState([...playlistOfSong]);
     const { param } = useParams
 
     useEffect(() => {
@@ -43,15 +46,17 @@ export default function ChooseDiv() {
     return (
         <div className="choose-div">
             <div className="main-select-div">
-                <div className="close-popup-btn" onClick={() => { setShowSelect(false) }}>✖</div>
-                <div className="adding" onClick={(e) => { if (e.target.value !== newPlaylist.current.value) { handleChange(newPlaylist.current.value, "input") } }}><input ref={newPlaylist} placeholder="צור פלייליסט חדש"></input>➕</div>
+                <div className="close-popup-btn" onClick={() => { setShowSelect(false) }}><Close /></div>
+                <div className="adding" onClick={(e) => { if (e.target.value !== newPlaylist.current.value) { handleChange(newPlaylist.current.value, "input") } }}><input ref={newPlaylist} placeholder="צור פלייליסט חדש"></input><   Addchart title={"הוסף את שם הפלייליסט"} className="add-btn" /></div>
                 <div className="select-div">
-                    {playlistsNames.map((name) => (
-                        <div key={name} value={name}>
-                            <input id={name} type="checkbox" value={name} onChange={(e) => handleChange(e.target.value, e.target.checked ? "uncheck" : "check")} checked={checked.includes(name)} />
-
-                            <lable for={name}>{name}</lable>
-                        </div>))}
+                    {playlistsNames.map((name) => {
+                        if (name !== "main playlist")
+                            return (
+                                <div key={name} value={name}>
+                                    <input id={name} type="checkbox" value={name} onChange={(e) => handleChange(e.target.value, e.target.checked ? "uncheck" : "check")} checked={checked.includes(name)} />
+                                    <lable className="lable-checkbox" for={name}>{name}</lable>
+                                </div>)
+                    })}
                 </div>
             </div>
         </div >

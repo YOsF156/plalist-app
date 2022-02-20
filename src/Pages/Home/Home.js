@@ -52,9 +52,8 @@ export default function Home() {
 
     const getSongRelationships = async (songId) => {//מזהה את כל הפלייליסטים של שיר מסוים
         setSongID(songId)
-
+        setloading(true)
         const allLists = await getPlaylists();
-        console.log(allLists);
         const conectiones = allLists.map((playlist) => {
             playlist.res = undefined
             if (playlist.songsID.find(song => song.id === songId)) {
@@ -63,6 +62,7 @@ export default function Home() {
             return playlist.res
         }).filter(res => res);
         setPlaylistOfSong(conectiones);
+        setloading(false)
         return conectiones
         // setShowSelect(true)
     }
@@ -87,7 +87,7 @@ export default function Home() {
 
         const get = await getPlaylists()
         const choosenPlaylist = await get.find(list => list.playlistName === name)
-        const set = await choosenPlaylist.songsID
+        const set = choosenPlaylist.songsID
         if (boolean) {
             setSongs(set)
             setFilterSongs(set);
@@ -133,15 +133,21 @@ export default function Home() {
         setPlaylistsNames(names.data)
     }
     const deletePlaylist = async (name) => {
-        if (window.confirm("Are you sure you want to delete?")) {
+        if (window.confirm("?פעולה זו תוביל למחיקת פלייליסט שלם! להמשיך")) {
             const deleteEntirePlaylist = await api.delete(`/playlists/${name}`);
             setPlaylistName("main playlist");
             window.location.replace("/Home");
         }
     }
+
+    const editPlaylist = (playlistName) => {
+
+    }
+
+
     return (
         <div className="home" >
-            <HomeContext.Provider value={{ setloading, playlistsNames, comingFrom, setComingFrom, setSongID, setPlaylistsNames, deletePlaylist, songID, playlistOfSong, getSongRelationships, setShowSelect, play, getPagePlaylist, filterSongs, setSongsRes, setShowRes, setFilterSongs, songs, AddSongToTheLIst }}>
+            <HomeContext.Provider value={{ editPlaylist, allPlaylists, setloading, playlistsNames, comingFrom, setComingFrom, setSongID, setPlaylistsNames, deletePlaylist, songID, playlistOfSong, getSongRelationships, setShowSelect, play, getPagePlaylist, filterSongs, setSongsRes, setShowRes, setFilterSongs, songs, AddSongToTheLIst }}>
                 <NavSide />
                 {loading && <LoadingDiv />}
                 {showSelect && <ChooseDiv />}

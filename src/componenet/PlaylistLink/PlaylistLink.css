@@ -2,6 +2,7 @@
     text-decoration:none;
     background-color: rgb(25, 118, 210);
     text-decoration: none;
+    cursor: default;
 
   }
 .playlist-div{
@@ -9,27 +10,52 @@
     height: 5%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     text-decoration: none;
     text-transform: none;
     text-decoration-color: none;
     text-decoration-style: none;
     color:aliceblue;
+    text-overflow: hidden;
     background-color: rgb(25, 118, 210);
     padding-right: 5px;
 }
 
-.playlist-div:hover{
-    background-color:cadetblue;
+/* .playlist-div:hover{
+    background-color:rgb(42, 189, 194);
 
-}
+} */
 
 .delete-playlist{
     cursor: pointer;
-    size: 200%;
     border-radius:10px;
 }
 .delete-playlist:hover{
    background-color:rgb(150, 45, 45);
     
+}
+
+.action-link-btn{
+    display: flex;
+    width: 25%;
+    position: absolute;
+  margin-left:1.2rem;
+  background-color:rgba(255, 255, 255, 0.666);
+
+}
+.setting-btn:hover{
+    cursor: pointer;
+     background-color:rgb(27, 234, 241);
+}
+
+.text-link{
+    width: 85%;
+    height: 5%;
+    overflow: hidden;
+    margin-left: 20px;
+
+}
+.text-link:hover{
+    background-color:rgb(27, 234, 241);
+    cursor: pointer;
 }

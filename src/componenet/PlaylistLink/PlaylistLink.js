@@ -1,18 +1,33 @@
 import "./PlaylistLink.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import HomeContext from "../../Context/HomeContext"
+import Delete from '@mui/icons-material/Delete';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Edit } from "@mui/icons-material";
+
 
 export default function PlaylistLink({ playlistName }) {
-    const { getPagePlaylist, deletePlaylist } = useContext(HomeContext)
-
+    const { getPagePlaylist, deletePlaylist, editPlaylist } = useContext(HomeContext)
+    const [expanded, setExpanded] = useState(false)
+    const handleExpandClick = () => {
+        setExpanded(!expanded)
+    }
     return (
-        <div onClick={() => getPagePlaylist(playlistName, true)} className="playlist-link">
+        <div className="playlist-link">
             <Link className="link-div" to={`/Home/${playlistName}`}>
                 <div className="playlist-div">
-                    <label className="delete-playlist" onClick={() => deletePlaylist(playlistName)}>🗑</label>{playlistName}
+                    <div title="ערוך/מחק" className="setting-btn"> <MoreVertIcon onClick={handleExpandClick} /></div>
+                    {expanded && <div className="action-link-btn">
+                        <div title="שנה את שם הפלייליסט">  <Edit sx={{ color: "orange", }} className="edit-playlist" onClick={() => editPlaylist(playlistName)} /></div>
+                        <div title="מחק את הפלייליסט">   <Delete sx={{ color: "pink" }} className="delete-playlist" onClick={() => deletePlaylist(playlistName)} /></div>
+                    </div>}
+                    <div className="text-link" onClick={() => getPagePlaylist(playlistName, true)}>
+                        {playlistName}
+                    </div>
                 </div>
             </Link>
         </div>
     )
 }
+// onClick={() => getPagePlaylist(playlistName, true)}

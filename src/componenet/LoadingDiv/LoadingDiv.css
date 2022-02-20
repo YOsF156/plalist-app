@@ -16,27 +16,24 @@
   }
 .loading1{
     background: rgb(187, 72, 72); 
-    animation: loadmoveright 3s infinite;
+    animation: loadmoveright 1s infinite;
     top:200px;
 }
 .loading2{
     background: rgb(255, 0, 170);
-    animation: loadmovedown 3s infinite;
-    top:200px; 
+    animation: loadmovedown 1s infinite;
     left: 50%;
 
 }
 
 .loading3{
     background: rgb(75, 110, 191); 
-    animation: loadmoveleft 3s infinite;
+    animation: loadmoveleft 1s infinite;
     top: 400px;
-    left : 50%;
 }
 .loading4{
     background: rgb(71, 204, 109); 
-    animation: loadmoveup 3s infinite;
-    top: 400px;
+    animation: loadmoveup 1s infinite;
     left: 40%;
 }
   @keyframes loadmoveright {
