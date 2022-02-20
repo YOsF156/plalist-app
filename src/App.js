@@ -2,7 +2,7 @@
 import './App.css';
 import SongList from './components/SongList/SongList';
 import SongChoise from "./components/SongChoise/SongChoise"
-import Header from './components/Header/Header';
+import Header from './componenet/Header/Header';
 import AddItemsForm from './components/AddItemForm/AddItemForm';
 import { useRef, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom";
@@ -178,8 +178,7 @@ function App() {
     localStorage.PLaccessToken && setLogin(true)
   }, [])
 
-  console.log(login)
-  console.log(playlistName);
+
   const clear = () => {
     localStorage.clear("PLaccessToken");
     setLogin(Boolean(localStorage.PLaccessToken));
@@ -216,9 +215,9 @@ function App() {
       <div className="app">
         <AdminContext.Provider value={{ getAllSong, setPlaylistName, allSongs, handleLogin, login, setLogin }}>
           <Router>
-            <Header />
 
             <Routes>
+
               <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
               <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
               <Route path='/Home/:playlist' element={<Home />} />

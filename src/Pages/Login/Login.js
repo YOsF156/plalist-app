@@ -45,7 +45,7 @@ export default function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ height: '100vh' }}>
+            <Grid container component="main" sx={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
                 <CssBaseline />
                 <Grid
                     item
@@ -98,6 +98,7 @@ export default function Login() {
                                 id="password"
                                 autoComplete="current-password"
                             />
+
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"

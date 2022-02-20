@@ -13,6 +13,7 @@ import api from "../../Controller/axiosReq";
 import NavSide from "../../componenet/NavSide/NavSide";
 import ChooseDiv from "../../componenet/ChooseDiv/ChooseDiv";
 import LoadingDiv from "../../componenet/LoadingDiv/LoadingDiv";
+import Header from "../../componenet/Header/Header";
 
 export default function Home() {
 
@@ -32,7 +33,6 @@ export default function Home() {
     const [showPlayer, setShowPlayer] = useState(false)
     const { getAllSong, allSongs } = useContext(AdminContext)
     const { playlist } = useParams();
-
     const query = playlist
 
 
@@ -152,6 +152,7 @@ export default function Home() {
     return (
         <div className="home" >
             <HomeContext.Provider value={{ editPlaylist, allPlaylists, setloading, playlistsNames, comingFrom, setComingFrom, setSongID, setPlaylistsNames, deletePlaylist, songID, playlistOfSong, getSongRelationships, setShowSelect, play, getPagePlaylist, filterSongs, setSongsRes, setShowRes, setFilterSongs, songs, AddSongToTheLIst }}>
+                <Header />
                 <NavSide />
                 {loading && <LoadingDiv />}
                 {showSelect && <ChooseDiv />}

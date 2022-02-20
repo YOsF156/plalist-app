@@ -2,10 +2,12 @@ import { Button } from "bootstrap"
 import { useContext, useState } from "react";
 import "./Header.css"
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AdminContext from "../../Context/AdminContext";
-export default function Header({ password, userName, signUp, loginShow, loginDetails }) {
+import axios from "axios";
+export default function Header() {
     const [loading, setLoading] = useState(false);
+    const { playlist } = useParams();
     const { login, setLogin } = useContext(AdminContext)
     const handleClick = () => {
         setLoading(!loading);
@@ -13,10 +15,13 @@ export default function Header({ password, userName, signUp, loginShow, loginDet
             setLoading(false)
         }, 1500);
     }
+
+
     return (
         <div className="header">
             {login && <div className="btn-log" type="button" onClick={() => { setLogin(!login); localStorage.clear(); }}><Link className="link-log" to="/login">log out</Link></div>}
             <h5> welcome to my playlist site </h5>
+            <h4> {playlist} : הנך צופה ב  </h4>
         </div>
     )
 

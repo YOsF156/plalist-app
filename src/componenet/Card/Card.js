@@ -59,15 +59,17 @@ export default function Cards({ song }) {
                 title={`views: ${song.views}`}
                 subheader={`uploaded: ${song.uploadedAt}`}
             />
-            <CardMedia
+            {/* <CardMedia
                 component="img"
                 // height="194"
                 image={song.bestThumbnail.url}
                 alt={song.title}
-            />
+            /> */}
+            <iframe className="embed-YT" title={song.title} width="230" height="180" src={`https://www.youtube.com/embed/${song.id}`}>
+            </iframe>
             <CardContent>
                 <Typography variant="body1" color="text.primary">
-                    {song.title}
+                    <strong> {song.title}</strong>
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -87,6 +89,7 @@ export default function Cards({ song }) {
                 </ExpandMore>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
+
                 <CardContent>
                     ?רוצה לקפוץ ליו טיוב
                     <Typography paragraph><a href={song.url} Target="_blank">{song.title}</a></Typography>

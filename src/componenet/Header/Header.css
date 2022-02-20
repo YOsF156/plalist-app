@@ -56,3 +56,8 @@
     flex-direction: row;
     justify-content: flex-end;
     text-decoration-color: red;}
+
+  .header h4{
+    position: absolute;
+    right: 2%;
+  }
