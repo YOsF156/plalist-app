@@ -82,21 +82,24 @@ export default function Home() {
 
 
     //משיכת פלייליסט
-    const getPagePlaylist = async (name, boolean) => {
-        // if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
+    const getPagePlaylist = async (name, boolean, songs = false) => {
 
-        const get = await getPlaylists()
+        // if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
+        let get;
+        songs ? get = songs : get = await getPlaylists();
         const choosenPlaylist = await get.find(list => list.playlistName === name)
         const set = choosenPlaylist.songsID
         if (boolean) {
+
             setSongs(set)
             setFilterSongs(set);
         }
-
+        setloading(false)
     }
 
     const AddSongToTheLIst = async (id, listName, add, from) => {
         setloading(true)
+        let playlists;
         // if (!localStorage.accessToken) return localStorage.accessToken = "";
         if (add && from === "fromSearch") {
 
@@ -114,11 +117,12 @@ export default function Home() {
             api.post(`/playlists/${id}`);//addSongToMainPlaylist
         };
         if (add) {
-            const playlists = await api.put(`/playlists/addSongTo/${listName}/${id}`)
+            playlists = await api.put(`/playlists/addSongTo/${listName}/${id}`)
         } else {
-            const playlists = await api.delete(`/playlists/deleteSongFrom/${listName}/${id}`)
+            playlists = await api.delete(`/playlists/deleteSongFrom/${listName}/${id}`)
         }
-        const sec = await getPagePlaylist(listName, playlist === listName);//יעדכן את הנתונים בעמוד רק עם השיר נוסף לרשימה שמוצגת כרגע
+        setAllPlaylists(playlists.data);
+        getPagePlaylist(playlist, listName === playlist || listName === "אהובים במיוחד", playlists.data);//יעדכן את הנתונים בעמוד רק עם השיר נוסף לרשימה שמוצגת כרגע
 
     }
 

@@ -26,12 +26,13 @@ export default function MusicCard({ song }) {
         setShowSelect(true)
     }
 
-    const earase = (id) => {
-        AddSongToTheLIst(id, playlist, false, "from-player")
+    const earase = async (id, playlistName) => {
+
+        await AddSongToTheLIst(id, playlistName, false, "from-player")
     }
     const handleLike = async (isLiked) => {
         const addToFavorites = await AddSongToTheLIst(song.id, "אהובים במיוחד", !isLiked, "from-player");
-        setloading(false)
+
     }
     const isLiked = () => {
         const favorites = allPlaylists.find((playlist) =>
@@ -61,7 +62,7 @@ export default function MusicCard({ song }) {
                 </CardContent>
 
                 <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                    {playlist !== "main playlist" && <IconButton title="מחק שיר מפלייליסט זה" onClick={() => earase(song.id)} aria-label="earase" >
+                    {playlist !== "main playlist" && <IconButton title="מחק שיר מפלייליסט זה" onClick={() => earase(song.id, playlist)} aria-label="earase" >
                         {theme.direction === 'rtl' ? <MoreVertIcon /> : <DeleteSweepIcon />}
                     </IconButton>}
                     <IconButton title="נגן/עצור" aria-label="play/pause">
