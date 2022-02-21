@@ -65,7 +65,7 @@ export default function Cards({ song }) {
                 image={song.bestThumbnail.url}
                 alt={song.title}
             /> */}
-            <iframe className="embed-YT" title={song.title} width="230" height="180" src={`https://www.youtube.com/embed/${song.id}`}>
+            <iframe className="embed-YT" title={song.title} width="250" height="180" src={`https://www.youtube.com/embed/${song.id}`}>
             </iframe>
             <CardContent>
                 <Typography variant="body1" color="text.primary">

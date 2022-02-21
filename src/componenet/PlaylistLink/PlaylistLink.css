@@ -1,6 +1,6 @@
 .link-div{
     text-decoration:none;
-    background-color: rgb(25, 118, 210);
+    background-color: rgb(210, 25, 56);;
     text-decoration: none;
     cursor: default;
 
@@ -17,7 +17,7 @@
     text-decoration-style: none;
     color:aliceblue;
     text-overflow: hidden;
-    background-color: rgb(25, 118, 210);
+    background-color: rgb(210, 25, 56);
     padding-right: 5px;
 }
 

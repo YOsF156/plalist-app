@@ -5,6 +5,7 @@ background-color:white;
 .nav-side{
     overflow:hidden;
     overflow-y: scroll;
+    background-color:rgb(210, 25, 56);
 }
 
 .nav-side::-webkit-scrollbar{

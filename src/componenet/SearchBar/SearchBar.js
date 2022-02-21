@@ -25,19 +25,22 @@ export default function SearchBar() {
         }
     }
 
-
+    const searchOnYouTube = () => {
+        searchSong(searchBar.current.value)
+    }
 
     return (
         <div className='search-bar-container'>
             <div className="search-input-box">
-                <img onClick={() => searchSong(searchBar.current.value)} className="searchIcon" src="../../../Search@2x.svg" alt="search" />
+                <img onClick={() => searchOnYouTube()} className="searchIcon" src="../../../Search@2x.svg" alt="search" />
                 <input
                     ref={searchBar}
                     // onChange={(event) => { filterByShearch(event.target.value) }}
                     type={"text"}
                     className="searchBox"
                     placeholder="...מה תרצה לשמוע היום"
-                    onChange={() => filter(searchBar.current.value)}
+                    onKeyDown={(e) => { if (e.key === "Enter") { searchOnYouTube() } }}
+                    onChange={(e) => { filter(searchBar.current.value) }}
                 />
             </div>
         </div>
