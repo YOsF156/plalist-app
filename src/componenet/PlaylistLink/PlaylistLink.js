@@ -8,7 +8,7 @@ import { Edit } from "@mui/icons-material";
 
 
 export default function PlaylistLink({ playlistName }) {
-    const { getPagePlaylist, deletePlaylist, editPlaylist } = useContext(HomeContext)
+    const { getPagePlaylist, deletePlaylist, editPlaylist, allPlaylists } = useContext(HomeContext)
     const [expanded, setExpanded] = useState(false)
     const handleExpandClick = () => {
         setExpanded(!expanded)
@@ -22,7 +22,8 @@ export default function PlaylistLink({ playlistName }) {
                         <div title="שנה את שם הפלייליסט">  <Edit sx={{ color: "orange", }} className="edit-playlist" onClick={() => editPlaylist(playlistName)} /></div>
                         <div title="מחק את הפלייליסט">   <Delete sx={{ color: "pink" }} className="delete-playlist" onClick={() => deletePlaylist(playlistName)} /></div>
                     </div>}
-                    <div className="text-link" onClick={() => getPagePlaylist(playlistName, true)}>
+                    {allPlaylists[0] && <span className="numofsongs">{allPlaylists.find(playlist => playlist.playlistName === playlistName).songsID.length}</span>
+                    } <div className="text-link" onClick={() => getPagePlaylist(playlistName, true)}>
                         {playlistName}
                     </div>
                 </div>

@@ -5,6 +5,9 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { Link, useParams } from "react-router-dom";
 import AdminContext from "../../Context/AdminContext";
 import axios from "axios";
+import { FavoriteSharp } from "@mui/icons-material";
+import FavoriteRounded from "@mui/icons-material/FavoriteRounded";
+import HomeRounded from "@mui/icons-material/HomeRounded";
 export default function Header() {
     const [loading, setLoading] = useState(false);
     const { playlist } = useParams();
@@ -19,9 +22,20 @@ export default function Header() {
 
     return (
         <div className="header">
-            {login && <div className="btn-log" type="button" onClick={() => { setLogin(!login); localStorage.clear(); }}><Link className="link-log" to="/login">log out</Link></div>}
-            <h5> welcome to my playlist site </h5>
-            <h4> {playlist} : הנך צופה ב  </h4>
+            {login && <div className="btn-log" type="button" onClick={() => { setLogin(!login); localStorage.clear(); }}><Link className="link-log" to="/login">יציאה</Link></div>}
+            <div className="centerHeadLine">
+
+                <h6 className="littleHeadline"> להנות בלי פרסומות </h6>
+
+                <h3> ליסטיםplay🐱‍👤  </h3>
+            </div>
+
+            <h6 className="sideHead">
+                <HomeRounded />
+                <FavoriteRounded sx={{ color: "yellow" }} />
+                : עבור אל
+                <div>| "<strong>{playlist}</strong>"</div>
+                : הנך צופה ב  </h6>
         </div>
     )
 

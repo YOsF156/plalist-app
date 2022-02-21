@@ -11,7 +11,7 @@ export default function NavSide() {
     return (
         <div className="nav-side">
             {playlistsNames.map((playlistName) => {
-                return (<PlaylistLink playlistName={playlistName} />)
+                return (<PlaylistLink key={playlistName} playlistName={playlistName} />)
             })}
         </div>
     )
