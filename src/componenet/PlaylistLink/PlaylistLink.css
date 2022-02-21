@@ -54,6 +54,8 @@
     width: 85%;
     height: 5%;
     overflow: hidden;
+    text-decoration: none;
+    color:aliceblue;
     margin-left: 20px;
 
 }

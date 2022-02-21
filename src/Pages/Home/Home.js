@@ -42,7 +42,7 @@ export default function Home() {
         getPlaylistsNames();
         getPagePlaylist(query, true)
 
-    }, [])
+    }, [playlist]);
 
     useEffect(() => {
         // go()
