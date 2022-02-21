@@ -144,8 +144,11 @@ export default function Home() {
         }
     }
 
-    const editPlaylist = (playlistName) => {
-
+    const editPlaylist = async (playlistName) => {
+        const newListName = { newName: prompt(`מה יהיה השם החדש של רשימת ההשמעה ${playlistName}`) };
+        await api.put(`/playlists/change/${playlistName}`, newListName);
+        setPlaylistName("main playlist");
+        window.location.replace("/Home");
     }
 
 

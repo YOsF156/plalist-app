@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
-
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,24 +14,25 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AdminContext from '../../Context/AdminContext';
 import { useContext } from 'react';
+import SignpostOutlined from '@mui/icons-material/SignpostOutlined';
 
-// function Copyright(props) {
+function Copyright(props) {
 
-//     return (
-//         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//             {'Copyright © '}
-//             <Link color="inherit" href="https://mui.com/">
-//                 Your Website
-//             </Link>{' '}
-//             {new Date().getFullYear()}
-//             {'.'}
-//         </Typography>
-//     );
-// }
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+            {'Copyright © '}
+            <Link color="inherit" to="https://mui.com/">
+                Your Website
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
 
 const theme = createTheme();
 
-export default function Login() {
+export default function Register() {
     const { handleLogin } = useContext(AdminContext)
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -46,7 +46,7 @@ export default function Login() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Grid container component="main" sx={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
+            <Grid container component="main" sx={{ display: 'flex', flexDirection: 'row-reverse', height: '100vh' }}>
                 <CssBaseline />
                 <Grid
                     item
@@ -54,7 +54,7 @@ export default function Login() {
                     sm={4}
                     md={7}
                     sx={{
-                        backgroundImage: 'url(https://lh3.googleusercontent.com/pw/AM-JKLW5rB-hRXjuZnWf5EWncwVrDMVu0GnAs6rQ9M4JKk9A5kpIjXtiz5wegJ74x3cW4mSLJX1wjmnJ9sckQKi233YZ8lkcLblCXWncfGf8hree8gLzlCusieUX4tWMt2wBHTLGi4fATUAt4HCom4uLOVpBVA=w1605-h903-no)',
+                        backgroundImage: 'url(https://learnenglishfunway.com/wp-content/uploads/2020/12/Music-2.jpg?ezimgfmt=ng%3Awebp%2Fngcb6%2Frs%3Adevice%2Frscb6-1)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
@@ -72,19 +72,20 @@ export default function Login() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
+                        <Avatar sx={{ m: 1, bgcolor: 'green' }}>
+
+                            <SignpostOutlined />
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            התחברות
+                            הרשמה
                         </Typography>
-                        <Box component="form" noValidate onSubmit={(e) => { handleLogin(e) }} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={(e) => { handleLogin(e, "signUp") }} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
                                 id="email"
-                                label="שם משתמש"
+                                label="בחר שם משתמש"
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
@@ -94,36 +95,42 @@ export default function Login() {
                                 required
                                 fullWidth
                                 name="password"
-                                label="סיסמה"
+                                label="בחר סיסמה"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
                             />
-
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="confirmPassword"
+                                label="אימות סיסמה"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                            />
                             <FormControlLabel
                                 control={<Checkbox value="remember" color="primary" />}
-                                label="זכור אותי ממחשב זה"
+                                label="זכור אותי במחשב זה"
                             />
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
+                                sx={{ mt: 3, mb: 2, bgcolor: 'green' }}
                             >
-                                התחבר
+                                הירשם
                             </Button>
                             <Grid container>
+
                                 <Grid item xs>
-                                    <Link to={`/register`} variant="body2">
-                                        ? שכחת סיסמה
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link to={`/register`} variant="body2">
-                                        ! אין לך חשבון? הירשם
+                                    <Link to="/login" variant="body2">
+                                        ! יש לך כבר חשבון ? התחבר
                                     </Link>
                                 </Grid>
                             </Grid>
+
                         </Box>
                     </Box>
                 </Grid>

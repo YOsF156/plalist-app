@@ -15,6 +15,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import AdminContext from './Context/AdminContext';
 import api from './Controller/axiosReq';
+import Register from './Pages/Register/Register';
 // import SoundCloudPlayer from 'react-player/soundcloud';
 
 // function App() {
@@ -184,13 +185,15 @@ function App() {
     setLogin(Boolean(localStorage.PLaccessToken));
   }
 
-  const handleLogin = async (event) => {
+  const handleLogin = async (event, sign = false) => {
     if (event === 0) { return clear() }
+    let login
+    sign === "signUp" ? login = "register" : login = "login";
     event.preventDefault();
     if (!localStorage.PLaccessToken) {
       const data = new FormData(event.currentTarget);
       const body = { username: data.get('email'), password: data.get('password') }
-      const res = await api.post("/user/login", body);
+      const res = await api.post(`/user/${login}`, body);
       localStorage.PLaccessToken = res.data.accessToken;
       api.defaults.headers.common["Authorization"] = `bearer ${localStorage.PLaccessToken}`;
       setLogin(Boolean(localStorage.PLaccessToken))
@@ -220,6 +223,7 @@ function App() {
 
               <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
               <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
+              <Route path="/register" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Register />} />
               <Route path='/Home/:playlist' element={<Home />} />
               <Route path="/Home" element={<Navigate to={`/Home/${playlistName}`} />} />
             </Routes>
