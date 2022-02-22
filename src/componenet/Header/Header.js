@@ -31,8 +31,8 @@ export default function Header() {
             </div>
 
             <h6 className="sideHead">
-                <HomeRounded />
-                <FavoriteRounded sx={{ color: "yellow" }} />
+                <Link to={`/Home/main%20playlist`}><HomeRounded /> </Link>
+                <Link to={`/Home/אהובים%20במיוחד`}>  <FavoriteRounded sx={{ color: "yellow" }} /></Link>
                 : עבור אל
                 <div>| "<strong>{playlist}</strong>"</div>
                 : הנך צופה ב  </h6>

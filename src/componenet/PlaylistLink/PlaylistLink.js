@@ -8,19 +8,17 @@ import { Edit } from "@mui/icons-material";
 import { useEffect } from "react";
 
 
-export default function PlaylistLink({ playlistName }) {
+export default function PlaylistLink({ playlistName, expanded, handleExpandClick }) {
     const { getPagePlaylist, deletePlaylist, editPlaylist, allPlaylists } = useContext(HomeContext)
-    const [expanded, setExpanded] = useState(false)
-    const handleExpandClick = () => {
-        setExpanded(!expanded)
-    }
+
+
 
     return (
         <div className="playlist-link">
             <div className="link-div" >
                 <div className="playlist-div">
-                    <div title="ערוך/מחק" className="setting-btn"> <MoreVertIcon onhover={handleExpandClick} onClick={handleExpandClick} /></div>
-                    {expanded && <div className="action-link-btn">
+                    <div title="ערוך/מחק" className="setting-btn"> <MoreVertIcon onClick={() => handleExpandClick(playlistName)} onMouseOver={() => { if (playlistName !== expanded) handleExpandClick("0") }} /></div>
+                    {expanded === playlistName && <div className="action-link-btn">
                         <div title="שנה את שם הפלייליסט">  <Edit sx={{ color: "orange", }} className="edit-playlist" onClick={() => editPlaylist(playlistName)} /></div>
                         <div title="מחק את הפלייליסט">   <Delete sx={{ color: "pink" }} className="delete-playlist" onClick={() => deletePlaylist(playlistName)} /></div>
                     </div>}

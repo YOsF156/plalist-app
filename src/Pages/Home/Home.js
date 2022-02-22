@@ -83,7 +83,7 @@ export default function Home() {
 
     //משיכת פלייליסט
     const getPagePlaylist = async (name, boolean, songs = false) => {
-
+        setloading(true)
         // if (localStorage.accessToken === "undefined") return localStorage.accessToken = "";
         let get;
         songs ? get = songs : get = await getPlaylists();
@@ -145,10 +145,18 @@ export default function Home() {
     }
 
     const editPlaylist = async (playlistName) => {
-        const newListName = { newName: prompt(`מה יהיה השם החדש של רשימת ההשמעה ${playlistName}`) };
-        await api.put(`/playlists/change/${playlistName}`, newListName);
-        setPlaylistName("main playlist");
-        window.location.replace("/Home");
+        if (playlistName === "אהובים במיוחד") {
+            alert("לא ניתן לשנות שם לפלייליסט זה")
+        } else {
+
+            const newListName = { newName: prompt(`מה יהיה השם החדש של רשימת ההשמעה ${playlistName}`) };
+            if (newListName.newName) {
+                await api.put(`/playlists/change/${playlistName}`, newListName);
+                setPlaylistName("main playlist");
+                window.location.replace("/Home");
+
+            }
+        }
     }
 
 

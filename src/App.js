@@ -224,7 +224,7 @@ function App() {
               <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
               <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
               <Route path="/register" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Register />} />
-              <Route path='/Home/:playlist' element={<Home />} />
+              <Route path='/Home/:playlist' element={login ? <Home /> : <Navigate to="/login" />} />
               <Route path="/Home" element={<Navigate to={`/Home/${playlistName}`} />} />
             </Routes>
 
