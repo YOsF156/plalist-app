@@ -1,4 +1,4 @@
-import Addchart from "@mui/icons-material/Addchart";
+import QueueMusicOutlinedIcon from '@mui/icons-material/QueueMusicOutlined';
 import AddModerator from "@mui/icons-material/AddModerator";
 import Close from "@mui/icons-material/Close";
 import { useEffect } from "react";
@@ -47,7 +47,7 @@ export default function ChooseDiv() {
         <div className="choose-div">
             <div className="main-select-div">
                 <div className="close-popup-btn" onClick={() => { setShowSelect(false) }}><Close /></div>
-                <div className="adding" onClick={(e) => { if (e.target.value !== newPlaylist.current.value) { handleChange(newPlaylist.current.value, "input") } }}><input ref={newPlaylist} placeholder="צור פלייליסט חדש"></input><   Addchart title={"הוסף את שם הפלייליסט"} className="add-btn" /></div>
+                <div className="adding" onClick={(e) => { if (e.target.value !== newPlaylist.current.value) { handleChange(newPlaylist.current.value, "input") } }}><input ref={newPlaylist} placeholder="צור פלייליסט חדש"></input><  QueueMusicOutlinedIcon title={"הוסף את שם הפלייליסט"} className="add-btn" /></div>
                 <div className="select-div">
                     {playlistsNames.map((name) => {
                         if (name !== "main playlist")

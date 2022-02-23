@@ -1,0 +1,9 @@
+.player-control-bar{
+    position: absolute;
+    bottom: 0;
+    width:40rem;
+    height: 3rem;
+    background-color:rgba(128, 128, 128, 0.671);
+    justify-content:space-between;
+    display:flex;
+}

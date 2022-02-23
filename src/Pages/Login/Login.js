@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AdminContext from '../../Context/AdminContext';
 import { useContext } from 'react';
+import PlayerControl from '../../componenet/PlayerControl/PlayerControl';
 
 // function Copyright(props) {
 
@@ -128,6 +129,7 @@ export default function Login() {
                     </Box>
                 </Grid>
             </Grid>
+            <PlayerControl />
         </ThemeProvider>
     );
 }

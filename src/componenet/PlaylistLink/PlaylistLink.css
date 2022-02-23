@@ -77,7 +77,11 @@
     /* min-height: 10px;
     min-width:10px; */
     margin-left:25px;
-    border-radius:30%;
+    border-radius:15px;
     position: absolute;
+    height: 1.2rem;
+    width: 1.2rem;
+    text-align: center;
+    align-items: center;
     /* size: 12px; */
 }

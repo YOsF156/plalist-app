@@ -14,6 +14,7 @@ import NavSide from "../../componenet/NavSide/NavSide";
 import ChooseDiv from "../../componenet/ChooseDiv/ChooseDiv";
 import LoadingDiv from "../../componenet/LoadingDiv/LoadingDiv";
 import Header from "../../componenet/Header/Header";
+import PlayerControl from "../../componenet/PlayerControl/PlayerControl";
 
 export default function Home() {
 
@@ -174,7 +175,9 @@ export default function Home() {
                     {/* <button className="popup-open" onClick={() => { setShowPlayer(!showPlayer) }}>play</button> */}
                     {showPlayer && <div className="player">
                         <Plyr source={http} options={{ autoplay: true }} />
-                    </div>}
+                        <PlayerControl />
+                    </div>
+                    }
                 </div>
             </HomeContext.Provider>
         </div>
