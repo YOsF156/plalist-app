@@ -79,7 +79,9 @@ export default function Register() {
                         <Typography component="h1" variant="h5">
                             הרשמה
                         </Typography>
-                        <Box component="form" noValidate onSubmit={(e) => { handleLogin(e, "signUp") }} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate onSubmit={(e) => {
+                            ; handleLogin(e, "signUp")
+                        }} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
@@ -104,7 +106,7 @@ export default function Register() {
                                 margin="normal"
                                 required
                                 fullWidth
-                                name="confirmPassword"
+                                name="password"
                                 label="אימות סיסמה"
                                 type="password"
                                 id="password"

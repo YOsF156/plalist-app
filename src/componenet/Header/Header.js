@@ -7,11 +7,12 @@ import AdminContext from "../../Context/AdminContext";
 import axios from "axios";
 import { FavoriteSharp } from "@mui/icons-material";
 import FavoriteRounded from "@mui/icons-material/FavoriteRounded";
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import HomeRounded from "@mui/icons-material/HomeRounded";
 export default function Header() {
     const [loading, setLoading] = useState(false);
     const { playlist } = useParams();
-    const { login, setLogin } = useContext(AdminContext)
+    const { userName, login, setLogin } = useContext(AdminContext)
     const handleClick = () => {
         setLoading(!loading);
         setTimeout(() => {
@@ -22,9 +23,12 @@ export default function Header() {
 
     return (
         <div className="header">
-            {login && <div className="btn-log" type="button" onClick={() => { setLogin(!login); localStorage.clear(); }}><Link className="link-log" to="/login">יציאה</Link></div>}
-            <div className="centerHeadLine">
+            {login && <div className="btn-log"  ><Link onClick={() => { setLogin(!login); localStorage.clear(); }} className="link-log" to="/login">יציאה</Link>
+                <div className="welcome-msg"> {`ברוך הבא: ${userName}`}</div>
+                <PeopleAltIcon />
+            </div>}
 
+            <div className="centerHeadLine">
                 <h6 className="littleHeadline"> להנות בלי פרסומות </h6>
 
                 <h3> ליסטיםplay🐱‍👤  </h3>

@@ -74,8 +74,7 @@
 .numofsongs{
     color: red;
     background-color:rgba(255, 255, 255, 0.9);
-    /* min-height: 10px;
-    min-width:10px; */
+justify-items: center;
     margin-left:25px;
     border-radius:15px;
     position: absolute;
@@ -83,5 +82,5 @@
     width: 1.2rem;
     text-align: center;
     align-items: center;
-    /* size: 12px; */
+    align-content: center;
 }

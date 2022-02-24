@@ -173,7 +173,8 @@ function App() {
 
   const [allSongs, setAllSong] = useState([])
   const [login, setLogin] = useState(false);
-  const [playlistName, setPlaylistName] = useState("main playlist")
+  const [playlistName, setPlaylistName] = useState("main playlist");
+  const [userName, setUserName] = useState("")
 
   useEffect(() => {
     localStorage.PLaccessToken && setLogin(true)
@@ -187,16 +188,17 @@ function App() {
 
   const handleLogin = async (event, sign = false) => {
     if (event === 0) { return clear() }
-    let login
-    sign === "signUp" ? login = "register" : login = "login";
     event.preventDefault();
+    let loggin
+    sign === "signUp" ? loggin = "register" : loggin = "login";
     if (!localStorage.PLaccessToken) {
       const data = new FormData(event.currentTarget);
       const body = { username: data.get('email'), password: data.get('password') }
-      const res = await api.post(`/user/${login}`, body);
+      const res = await api.post(`/user/${loggin}`, body);
       localStorage.PLaccessToken = res.data.accessToken;
       api.defaults.headers.common["Authorization"] = `bearer ${localStorage.PLaccessToken}`;
       setLogin(Boolean(localStorage.PLaccessToken))
+      setUserName(data.get('email'))
     } else {
       clear()
     }
@@ -216,7 +218,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <AdminContext.Provider value={{ getAllSong, setPlaylistName, allSongs, handleLogin, login, setLogin }}>
+        <AdminContext.Provider value={{ userName, getAllSong, setPlaylistName, allSongs, handleLogin, login, setLogin }}>
           <Router>
 
             <Routes>

@@ -43,8 +43,8 @@ export default function Cards({ song }) {
     };
 
     return (
-        <Card sx={{
-            maxHeight: 480, zIndex: 1500, overflow: 'visible', overflowY: "scroll", margin: 2, minWidth: 250, maxWidth: 250
+        <Card className="card-div" sx={{
+            position: "relative", maxHeight: 480, zIndex: 1500, overflow: 'visible', overflowY: "scroll", margin: 2, minWidth: 250, maxWidth: 250
         }}>
             <CardHeader
                 avatar={
