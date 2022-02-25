@@ -1,0 +1,20 @@
+.welcome-headline{
+    position: absolute;
+    top:10%;
+    left: -5%;
+    color: rgb(240, 231, 231);
+    background-color:#c72a2ae1;
+    border-radius:7px;
+    display: flex;
+    flex-direction: row-reverse;
+    animation: slide 3s normal ;
+    width: 70%;
+    align-items: center;
+    justify-content:space-around;
+   
+}
+
+@keyframes slide{
+    from {top:0}
+    to {top:10%}
+}

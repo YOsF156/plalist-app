@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
-
+import "./Login.css"
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -49,18 +49,23 @@ export default function Login() {
         <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
                 <CssBaseline />
+                <div className="welcome-headline">
+                    <h1>  <strong>ליסטיםplay🐱‍👤 </strong> </h1>
+                    <h3 className="littleHeadline">  <strong>להנות בלי פרסומות </strong></h3>
+
+                </div>
                 <Grid
                     item
                     xs={false}
                     sm={4}
                     md={7}
-                    sx={{
-                        backgroundImage: 'url(https://lh3.googleusercontent.com/pw/AM-JKLW5rB-hRXjuZnWf5EWncwVrDMVu0GnAs6rQ9M4JKk9A5kpIjXtiz5wegJ74x3cW4mSLJX1wjmnJ9sckQKi233YZ8lkcLblCXWncfGf8hree8gLzlCusieUX4tWMt2wBHTLGi4fATUAt4HCom4uLOVpBVA=w1605-h903-no)',
+                    sx={{//https://lh3.googleusercontent.com/pw/AM-JKLW5rB-hRXjuZnWf5EWncwVrDMVu0GnAs6rQ9M4JKk9A5kpIjXtiz5wegJ74x3cW4mSLJX1wjmnJ9sckQKi233YZ8lkcLblCXWncfGf8hree8gLzlCusieUX4tWMt2wBHTLGi4fATUAt4HCom4uLOVpBVA=w1605-h903-no
+                        backgroundImage: 'url(https://i.ytimg.com/vi/FrZQNS_J-vQ/maxresdefault.jpg)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'left',
                     }}
                 />
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -73,7 +78,7 @@ export default function Login() {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <Avatar sx={{ m: 1, bgcolor: '#c72a2ae1' }}>
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5">
@@ -129,7 +134,7 @@ export default function Login() {
                     </Box>
                 </Grid>
             </Grid>
-            <PlayerControl />
-        </ThemeProvider>
+
+        </ThemeProvider >
     );
 }

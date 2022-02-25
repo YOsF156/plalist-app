@@ -114,7 +114,7 @@ export default function Home() {
                 duration: song.duration,
                 uploadedAt: song.uploadedAt
             };
-            api.post(`/songs/${id}`, newSong);
+            await api.post(`/songs/${id}`, newSong);
             api.post(`/playlists/${id}`);//addSongToMainPlaylist
         };
         if (add) {
