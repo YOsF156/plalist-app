@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 
 export default function PlaylistLink({ playlistName, expanded, handleExpandClick }) {
-    const { getPagePlaylist, deletePlaylist, editPlaylist, allPlaylists } = useContext(HomeContext)
+    const { getPagePlaylist, setShowSelect, deletePlaylist, setShowRes, editPlaylist, allPlaylists } = useContext(HomeContext)
 
 
 
@@ -23,7 +23,7 @@ export default function PlaylistLink({ playlistName, expanded, handleExpandClick
                         <div title="מחק את הפלייליסט">   <Delete sx={{ color: "pink" }} className="delete-playlist" onClick={() => deletePlaylist(playlistName)} /></div>
                     </div>}
                     {allPlaylists[0] && <span className="numofsongs">{allPlaylists.find(playlist => playlist.playlistName === playlistName).songsID.length}</span>
-                    } <Link className="text-link" to={`/Home/${playlistName}`}>
+                    } <Link onClick={() => { setShowSelect(false); setShowRes(false) }} className="text-link" to={`/Home/${playlistName}`}>
                         {playlistName}
                     </Link>
                 </div>

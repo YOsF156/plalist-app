@@ -58,9 +58,9 @@ export default function Login() {
                     item
                     xs={false}
                     sm={4}
-                    md={7}
+                    md={7}//https://i.ytimg.com/vi/FrZQNS_J-vQ/maxresdefault.jpg
                     sx={{//https://lh3.googleusercontent.com/pw/AM-JKLW5rB-hRXjuZnWf5EWncwVrDMVu0GnAs6rQ9M4JKk9A5kpIjXtiz5wegJ74x3cW4mSLJX1wjmnJ9sckQKi233YZ8lkcLblCXWncfGf8hree8gLzlCusieUX4tWMt2wBHTLGi4fATUAt4HCom4uLOVpBVA=w1605-h903-no
-                        backgroundImage: 'url(https://i.ytimg.com/vi/FrZQNS_J-vQ/maxresdefault.jpg)',
+                        backgroundImage: 'url(https://lh3.googleusercontent.com/pw/AM-JKLW5rB-hRXjuZnWf5EWncwVrDMVu0GnAs6rQ9M4JKk9A5kpIjXtiz5wegJ74x3cW4mSLJX1wjmnJ9sckQKi233YZ8lkcLblCXWncfGf8hree8gLzlCusieUX4tWMt2wBHTLGi4fATUAt4HCom4uLOVpBVA=w1605-h903-no)',
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
