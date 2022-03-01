@@ -113,7 +113,7 @@ export default function Home() {
                 views: song.views,
                 duration: song.duration,
                 uploadedAt: song.uploadedAt
-            };
+            }
             await api.post(`/songs/${id}`, newSong);
             api.post(`/playlists/${id}`);//addSongToMainPlaylist
         };
