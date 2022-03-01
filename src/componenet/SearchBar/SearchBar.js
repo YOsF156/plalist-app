@@ -9,7 +9,7 @@ export default function SearchBar() {
     const searchBar = useRef(null)
 
     const searchSong = async (text) => {
-        const search = await api.get(`http://localhost:3007/api/search/${text}`)
+        const search = await api.get(`/api/search/${text}`)
         console.log(search.data);
         setSongsRes(search.data);
         setShowRes(true);
