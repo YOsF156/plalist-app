@@ -190,8 +190,7 @@ function App() {
   //   }
   // };
   function parseJwt(token) {
-    if (login) {
-
+    if (localStorage.PLaccessToken) {
       var base64Url = token.split('.')[1];
       var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
       var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
@@ -203,6 +202,7 @@ function App() {
       return "null"
     }
   };
+
 
   //setUserName((parseJwt(localStorage.PLaccessToken).username))
 
