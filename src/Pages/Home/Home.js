@@ -15,6 +15,7 @@ import ChooseDiv from "../../componenet/ChooseDiv/ChooseDiv";
 import LoadingDiv from "../../componenet/LoadingDiv/LoadingDiv";
 import Header from "../../componenet/Header/Header";
 import PlayerControl from "../../componenet/PlayerControl/PlayerControl";
+import WelcomeDiv from "../../componenet/WelcomeDiv/WelcomeDiv";
 
 export default function Home() {
 

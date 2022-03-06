@@ -11,7 +11,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import HomeRounded from "@mui/icons-material/HomeRounded";
 export default function Header() {
     const [loading, setLoading] = useState(false);
-    const { playlist } = useParams();
+    const { playlist, username } = useParams();
     const { userName, login, setLogin } = useContext(AdminContext)
     const handleClick = () => {
         setLoading(!loading);
@@ -24,7 +24,7 @@ export default function Header() {
     return (
         <div className="header">
             {login && <div className="btn-log"  ><Link onClick={() => { setLogin(!login); localStorage.clear(); }} className="link-log" to="/login">יציאה</Link>
-                <div className="welcome-msg"> {`ברוך הבא: ${userName}`}</div>
+                <div className="welcome-msg"> {`ברוך הבא: ${username}`}</div>
                 <PeopleAltIcon />
             </div>}
 
@@ -35,8 +35,8 @@ export default function Header() {
             </div>
 
             <h6 className="sideHead">
-                <Link to={`/Home/אהובים%20במיוחד`}>  <FavoriteRounded sx={{ color: "yellow" }} /></Link>
-                <Link to={`/Home/main%20playlist`}><HomeRounded sx={{ color: "yellow" }} /> </Link>
+                <Link to={`/Home/${username}/אהובים%20במיוחד`}>  <FavoriteRounded sx={{ color: "yellow" }} /></Link>
+                <Link to={`/Home/${username}/main%20playlist`}><HomeRounded sx={{ color: "yellow" }} /> </Link>
                 : עבור אל
                 <div>| "<strong>{playlist}</strong>"</div>
                 : הנך צופה ב  </h6>

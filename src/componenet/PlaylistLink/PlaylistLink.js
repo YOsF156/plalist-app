@@ -1,6 +1,6 @@
 import "./PlaylistLink.css"
 import { useContext, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import HomeContext from "../../Context/HomeContext"
 import Delete from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 export default function PlaylistLink({ playlistName, expanded, handleExpandClick }) {
     const { getPagePlaylist, setShowSelect, deletePlaylist, setShowRes, editPlaylist, allPlaylists } = useContext(HomeContext)
+    const { username } = useParams()
 
 
 
@@ -23,7 +24,7 @@ export default function PlaylistLink({ playlistName, expanded, handleExpandClick
                         <div title="מחק את הפלייליסט">   <Delete sx={{ color: "pink" }} className="delete-playlist" onClick={() => deletePlaylist(playlistName)} /></div>
                     </div>}
                     {allPlaylists[0] && <span className="numofsongs">{allPlaylists.find(playlist => playlist.playlistName === playlistName).songsID.length}</span>
-                    } <Link onClick={() => { setShowSelect(false); setShowRes(false) }} className="text-link" to={`/Home/${playlistName}`}>
+                    } <Link onClick={() => { setShowSelect(false); setShowRes(false) }} className="text-link" to={`/Home/${username}/${playlistName}`}>
                         {playlistName}
                     </Link>
                 </div>

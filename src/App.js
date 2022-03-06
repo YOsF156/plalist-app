@@ -5,7 +5,7 @@ import SongChoise from "./components/SongChoise/SongChoise"
 import Header from './componenet/Header/Header';
 import AddItemsForm from './components/AddItemForm/AddItemForm';
 import { useRef, useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams, } from "react-router-dom";
 // import ReactPlayer from 'react-player';
 // import Plyr from 'react-plyr';
 import Plyr from "plyr-react";
@@ -170,16 +170,28 @@ import Register from './Pages/Register/Register';
 
 
 function App() {
-
+  const { username } = useParams()
   const [allSongs, setAllSong] = useState([])
   const [login, setLogin] = useState(false);
   const [playlistName, setPlaylistName] = useState("main playlist");
-  const [userName, setUserName] = useState("")
+  const [userName, setUserName] = useState(parseJwt(localStorage.PLaccessToken).username);
 
   useEffect(() => {
-    localStorage.PLaccessToken && setLogin(true)
+    localStorage.PLaccessToken && setLogin(true);
+
   }, [])
 
+
+  function parseJwt(token) {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return "null";
+    }
+  };
+
+
+  //setUserName((parseJwt(localStorage.PLaccessToken).username))
 
   const clear = () => {
     localStorage.clear("PLaccessToken");
@@ -197,8 +209,8 @@ function App() {
       const res = await api.post(`/user/${loggin}`, body);
       localStorage.PLaccessToken = res.data.accessToken;
       api.defaults.headers.common["Authorization"] = `bearer ${localStorage.PLaccessToken}`;
+      setUserName(data.get('email'));
       setLogin(Boolean(localStorage.PLaccessToken))
-      setUserName(data.get('email'))
     } else {
       clear()
     }
@@ -223,11 +235,11 @@ function App() {
 
             <Routes>
 
-              <Route path="/" element={login ? <Navigate to={`/Home/${playlistName}`} /> : <Navigate to="/login" />} />
-              <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Login />} />
-              <Route path="/register" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${playlistName}`} /> : <Register />} />
-              <Route path='/Home/:playlist' element={login ? <Home /> : <Navigate to="/login" />} />
-              <Route path="/Home" element={<Navigate to={`/Home/${playlistName}`} />} />
+              <Route path="/" element={login ? <Navigate to={`/Home/${userName}/${playlistName}`} /> : <Navigate to="/login" />} />
+              <Route path="/login" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${userName}/${playlistName}`} /> : <Login />} />
+              <Route path="/register" element={localStorage.PLaccessToken ? <Navigate to={`/Home/${userName}/${playlistName}`} /> : <Register />} />
+              <Route path='/Home/:username/:playlist' element={login ? <Home /> : <Navigate to="/login" />} />
+              <Route path="/Home" element={<Navigate to={`/Home/${userName}/${playlistName}`} />} />
             </Routes>
 
           </Router>
